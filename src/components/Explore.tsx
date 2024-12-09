@@ -1,55 +1,107 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 const Explore: React.FC = () => {
-  const handleScrollRight = () => {
-    const container = document.querySelector(".image-container");
-    if (container) container.scrollBy({ left: 200, behavior: "smooth" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const images = [
+    { src: "/explore1.jpg", alt: "Modern Living Room 1" },
+    { src: "/explore2.jpg", alt: "Modern Living Room 2" },
+    { src: "/explore3.jpg", alt: "Modern Living Room 3" },
+  ];
+
+  // Handle scrolling logic
+  const handleScroll = (direction: "left" | "right") => {
+    if (!containerRef.current) return;
+
+    const scrollAmount = containerRef.current.offsetWidth / 1.2;
+    let newIndex = currentIndex;
+
+    if (direction === "right") {
+      newIndex = Math.min(currentIndex + 1, images.length - 1);
+    }
+
+    if (direction === "left") {
+      newIndex = Math.max(currentIndex - 1, 0);
+    }
+
+    setCurrentIndex(newIndex);
+
+    containerRef.current.scrollTo({
+      left: scrollAmount * newIndex,
+      behavior: "smooth",
+    });
   };
 
+  // Handle resizing responsiveness
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="relative flex flex-col md:flex-row items-start pl-4 pr-7 pt-2 w-full h-[670px] space-x-2 bg-gray-100">
-      {/* Left Content */}
-      <div className="flex flex-col justify-center items-center w-1/4 h-auto space-y-4 px-4">
-        <h2 className="text-3xl font-bold text-gray-800">50+ Beautiful rooms inspiration</h2>
-        <p className="text-gray-600">
-          Our designer already made a lot of beautiful prototype of rooms that inspire you
+    <div className="relative flex flex-col md:flex-row items-center pl-4 pr-7 pt-2 w-full bg-gray-100 md:h-[700px] h-auto">
+      {/* Left Content Section */}
+      <div className="flex flex-col justify-center items-start w-full md:w-1/4 h-auto px-4 space-y-4">
+        <h2 className="text-lg md:text-3xl font-bold text-gray-800">50+ Beautiful Room Inspirations</h2>
+        <p className="text-sm md:text-base text-gray-600">
+          Explore designer prototypes to inspire your next living space project.
         </p>
-        <button className="px-6 py-2 bg-[#B88E2F] text-white hover:bg-blue-700">Explore More</button>
+        <button className="px-4 py-2 md:px-6 bg-[#B88E2F] text-white hover:bg-blue-700" title="Explore More">
+          Explore More
+        </button>
       </div>
 
-      {/* Right Content */}
-      <div className="flex-1 relative overflow-hidden">
-        {/* Images Wrapper */}
-        <div className="flex items-center space-x-2 image-container overflow-hidden">
-          {/* Image 1 - Large */}
-          <div
-            className="flex-shrink-0 w-[500px] h-[600px] bg-cover bg-center shadow-lg relative"
-            style={{ backgroundImage: "url('/explore1.jpg')" }}
-          >
-            {/* Arrow Button */}
+      {/* Carousel Section */}
+      <div className="relative flex-1 overflow-hidden">
+        <div
+          ref={containerRef}
+          className="flex items-center overflow-x-auto scrollbar-hidden space-x-2"
+        >
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`transition-all duration-300 ease-in-out ${
+                index === currentIndex
+                  ? "w-[300px] h-[400px] md:w-[400px] md:h-[500px]"
+                  : "w-[200px] h-[300px] md:w-[250px] md:h-[350px] opacity-80"
+              } bg-cover bg-center shadow-lg`}
+              style={{ backgroundImage: `url(${image.src})` }}
+              aria-label={image.alt}
+            />
+          ))}
+        </div>
+
+        {/* Scroll Buttons - Centered in the Explore Section */}
+        {isMobile && (
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4 md:hidden">
+            {/* Left Scroll Button */}
             <button
-              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-[#B88E2F] text-white w-10 h-10 flex items-center justify-center shadow-lg hover:bg-gray-700 z-10"
+              className="bg-[#B88E2F] text-white w-12 h-12 flex items-center justify-center shadow-lg hover:bg-gray-700"
+              title="Scroll Left"
+              aria-label="Scroll Left"
+              onClick={() => handleScroll("left")}
+            >
+              &#10144;
+            </button>
+            {/* Right Scroll Button */}
+            <button
+              className="bg-[#B88E2F] text-white w-12 h-12 flex items-center justify-center shadow-lg hover:bg-gray-700"
+              title="Scroll Right"
               aria-label="Scroll Right"
-              onClick={handleScrollRight}
+              onClick={() => handleScroll("right")}
             >
               &#10145;
             </button>
           </div>
-
-          {/* Image 2 - Medium */}
-          <div
-            className="flex-shrink-0 w-[400px] h-[570px] bg-cover bg-center shadow-lg"
-            style={{ backgroundImage: "url('/explore2.jpg')" }}
-          ></div>
-
-          {/* Image 3 - Partially Visible */}
-          <div
-            className="flex-shrink-0 w-[300px] h-[570px] bg-cover bg-center shadow-lg"
-            style={{ backgroundImage: "url('/explore3.jpg')" }}
-          ></div>
-        </div>
+        )}
       </div>
     </div>
   );

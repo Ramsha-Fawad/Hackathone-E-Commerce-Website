@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from 'next/image';
 import Link from "next/link";
 import { useState } from "react";
 
@@ -12,12 +12,20 @@ export default function CartPage() {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <div className="bg-white py-6 shadow-md w-full h-[316px] items-center space-y-6"
-      style={{
-        backgroundImage: `url('/header-bg.jpg')`,
-      }}>
+      <div
+        className="bg-white py-6 shadow-md w-full h-[316px] items-center space-y-6"
+        style={{
+          backgroundImage: `url('/header-bg.jpg')`,
+        }}
+      >
         <div className="container mx-auto flex flex-col items-center py-20">
-          <img src="/logo.jpg" alt="Meubel House Logo" className="mb-4" />
+          <Image
+            src="/logo.jpg"
+            alt="Meubel House Logo"
+            width={70}
+            height={70}
+            className="mb-4"
+          />
           <div className="text-center space-y-3">
             <h1 className="text-4xl font-semibold">Cart</h1>
             <p className="text-sm text-black">Home &gt; Cart</p>
@@ -42,7 +50,7 @@ export default function CartPage() {
               <tbody className="p-48">
                 <tr>
                   <td className="py-4 flex items-center text-center">
-                  <div className="w-24 h-24 bg-[#F9F1E7] flex items-center justify-center rounded-md">
+                    <div className="w-24 h-24 bg-[#F9F1E7] flex items-center justify-center rounded-md">
                       <Image
                         src="/sofa.jpg"
                         alt="Asgard Sofa"
@@ -63,10 +71,15 @@ export default function CartPage() {
                       className="w-10 h-10 border rounded-md text-center items-center"
                     />
                   </td>
-                  <td className="py-4 items-center text-center">Rs. {subtotal.toLocaleString()}
-                  </td>
+                  <td className="py-4 items-center text-center">Rs. {subtotal.toLocaleString()}</td>
                   <td className="py-4">
-                  <img src="/bin-icon.jpg" alt="Delete" className="ml-4 w-6 h-6 cursor-pointer inline-block" />
+                    <Image
+                      src="/bin-icon.jpg"
+                      alt="Delete"
+                      width={24}
+                      height={24}
+                      className="ml-4 w-6 h-6 cursor-pointer inline-block"
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -86,38 +99,59 @@ export default function CartPage() {
             </div>
             <button
               className="w-[222px] h-[58.95px] mt-4 py-2 bg-white text-black border border-black rounded-2xl hover:bg-yellow-600"
-            ><Link href="/checkout">Check Out</Link>
+            >
+              <Link href="/checkout">Check Out</Link>
             </button>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F9F1E7]  h-[270px] py-10 items-center shadow-md">
+      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
         <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/trophy.jpg" alt="Trophy Icon" className="w-[60px] h-[60px]" />
+            <Image
+              src="/trophy.jpg"
+              alt="Trophy Icon"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">High Quality</span>
               <p className="text-sm text-gray-500">Crafted from top materials</p>
             </div>
           </div>
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/protection-tick-icon.jpg" alt="Protection Symbol" className="w-[60px] h-[60px]" />
+            <Image
+              src="/protection-tick-icon.jpg"
+              alt="Protection Symbol"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">Warranty Protection</span>
               <p className="text-sm text-gray-500">Over 2 years</p>
             </div>
           </div>
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/shipping-icon.jpg" alt="Shipping Icon" className="w-[60px] h-[60px]" />
+            <Image
+              src="/shipping-icon.jpg"
+              alt="Shipping Icon"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">Free Shipping</span>
               <p className="text-sm text-gray-500">Order over $150</p>
             </div>
           </div>
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/support-icon.jpg" alt="Customer Support Icon" className="w-[60px] h-[60px]" />
+            <Image
+              src="/support-icon.jpg"
+              alt="Customer Support Icon"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">24/7 Support</span>
               <p className="text-sm text-gray-500">Dedicated support</p>

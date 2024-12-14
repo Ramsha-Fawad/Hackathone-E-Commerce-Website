@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image';
 import { IoShareSocialSharp } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
@@ -169,31 +170,51 @@ const products: Product[] = [
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F9F1E7]  h-[270px] py-10 items-center shadow-md">
+      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
         <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/trophy.jpg" alt="Trophy Icon" className="w-[60px] h-[60px]" />
+            <Image
+              src="/trophy.jpg"
+              alt="Trophy Icon"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">High Quality</span>
               <p className="text-sm text-gray-500">Crafted from top materials</p>
             </div>
           </div>
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/protection-tick-icon.jpg" alt="Protection Symbol" className="w-[60px] h-[60px]" />
+            <Image
+              src="/protection-tick-icon.jpg"
+              alt="Protection Symbol"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">Warranty Protection</span>
               <p className="text-sm text-gray-500">Over 2 years</p>
             </div>
           </div>
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/shipping-icon.jpg" alt="Shipping Icon" className="w-[60px] h-[60px]" />
+            <Image
+              src="/shipping-icon.jpg"
+              alt="Shipping Icon"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">Free Shipping</span>
               <p className="text-sm text-gray-500">Order over $150</p>
             </div>
           </div>
           <div className="flex flex-row items-center text-left space-x-4">
-            <img src="/support-icon.jpg" alt="Customer Support Icon" className="w-[60px] h-[60px]" />
+            <Image
+              src="/support-icon.jpg"
+              alt="Customer Support Icon"
+              width={60}
+              height={60}
+            />
             <div>
               <span className="text-xl font-bold">24/7 Support</span>
               <p className="text-sm text-gray-500">Dedicated support</p>

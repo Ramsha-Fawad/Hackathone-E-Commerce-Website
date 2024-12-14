@@ -71,11 +71,14 @@ const products: Product[] = [
       </div>
 
       {/* Filter Section */}
-      <div className="container bg-[#F9F1E7] mr-0 w-full p-6 flex justify-between items-center">
-        <div className="bg-[#F9F1E7] flex items-center space-x-4">
+      <div className="container bg-[#F9F1E7] w-full p-6 flex justify-between items-center">
+        <div className="bg-[#F9F1E7] flex items-center pl-14 space-x-8">
            <img src="/filter-icon.jpg" alt="Filter button" />
-          <button className="bg-[#F9F1E7]-200 p-2">Filter</button>
-          <span>Showing 1–16 of 32 results</span>
+          <button className="bg-[#F9F1E7]-200 pr-2 text-black font-medium">Filter</button>
+          <img src="/grid-icon.jpg" alt="View in Grids" />
+          <img src="/bi-view-icon.jpg" alt="Bi-view List" />
+          <img src="/line5.jpg" alt="Line" />
+          <span className="text-black font-medium">Showing 1–16 of 32 results</span>
         </div>
         <div className="flex items-center space-x-4">
           <span>Show</span>
@@ -95,7 +98,7 @@ const products: Product[] = [
 
      {/* Product Grid */}
 <div className="container mx-auto p-6 grid grid-cols-4 gap-6">
-  {Array.from({ length: 3 }).map((_, rowIndex) =>
+  {Array.from({ length: 4 }).map((_, rowIndex) =>
     products.map((product) => (
       <div
         key={`${rowIndex}-${product.id}`}

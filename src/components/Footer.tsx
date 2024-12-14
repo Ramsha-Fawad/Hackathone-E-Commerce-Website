@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
         {/* Section 1 */}
         <div>
-          <h1 className="text-xl font-bold">Funiro</h1>
+          <h1 className="text-xl text-black text-[24px] w-[85px] h-[36px] font-bold">Funiro.</h1>
           <p className="mt-4 text-sm">
             1234 Furniture Street, Suite 5678<br />
             Cityville, State, 12345
@@ -16,8 +16,8 @@ const Footer = () => {
         {/* Section 2 */}
         <div>
           <h2 className="text-lg font-semibold">Links</h2>
-          <ul className="mt-4 space-y-2">
-            <li><a href="#home" className="hover:text-gray-900">Home</a></li>
+          <ul className="mt-4 text-black font-semibold space-y-2">
+            <li><a href="/" className="hover:text-gray-900">Home</a></li>
             <li><a href="/shop" className="hover:text-gray-900">Shop</a></li>
             <li><a href="/about" className="hover:text-gray-900">About</a></li>
             <li><a href="/contact" className="hover:text-gray-900">Contact</a></li>
@@ -27,7 +27,7 @@ const Footer = () => {
         {/* Section 3 */}
         <div>
           <h2 className="text-lg font-semibold">Help</h2>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 text-black font-semibold space-y-2">
             <li><a href="/payment-options" className="hover:text-gray-900">Payment Options</a></li>
             <li><a href="/returns" className="hover:text-gray-900">Returns</a></li>
             <li><a href="/privacy-policies" className="hover:text-gray-900">Privacy Policies</a></li>
@@ -41,11 +41,11 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter Your Email Address"
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-l focus:outline-none"
+              className="flex py-2 underline focus:outline-none"
             />
             <button
               type="submit"
-              className="bg-white text-black px-4 py-2 hover:underline"
+              className="bg-white text-black font-semibold px-4 py-2 underline hover:bg-yellow-300"
             >
               SUBSCRIBE
             </button>

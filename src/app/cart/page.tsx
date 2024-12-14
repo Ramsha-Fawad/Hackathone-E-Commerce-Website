@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function CartPage() {
@@ -85,8 +86,7 @@ export default function CartPage() {
             </div>
             <button
               className="w-[222px] h-[58.95px] mt-4 py-2 bg-white text-black border border-black rounded-2xl hover:bg-yellow-600"
-            >
-              Check Out
+            ><Link href="/checkout">Check Out</Link>
             </button>
           </div>
         </div>

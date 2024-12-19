@@ -6,6 +6,25 @@ import Image from "next/image";
 const Explore: React.FC = () => {
   const [zoomedIndex, setZoomedIndex] = useState(0);
 
+  useEffect(() => {
+    const container = document.querySelector<HTMLDivElement>(".image-container");
+    if (container) {
+      const handleScroll = () => {
+        const scrollPosition = container.scrollLeft;
+        const imageWidth = container.children[0]?.clientWidth || 1; // Avoid division by 0
+        const index = Math.floor(scrollPosition / imageWidth);
+        setZoomedIndex(index);
+      };
+
+      container.addEventListener("scroll", handleScroll);
+
+      // Cleanup listener on unmount
+      return () => {
+        container.removeEventListener("scroll", handleScroll);
+      };
+    }
+  }, []); // Empty dependency array ensures this runs only on mount/unmount
+
   const handleScrollRight = () => {
     const container = document.querySelector<HTMLDivElement>(".image-container");
     if (container) {
@@ -21,21 +40,7 @@ const Explore: React.FC = () => {
     }
   };
 
-  const handleScroll = () => {
-    const container = document.querySelector<HTMLDivElement>(".image-container");
-    if (container) {
-      const scrollPosition = container.scrollLeft;
-      const imageWidth = container.children[0].clientWidth;
-      const index = Math.floor(scrollPosition / imageWidth);
-      setZoomedIndex(index);
-    }
-  };
-
-  const images = [
-    "/explore1.jpg",
-    "/explore2.jpg",
-    "/explore3.jpg",
-  ];
+  const images = ["/explore1.jpg", "/explore2.jpg", "/explore3.jpg"];
 
   return (
     <div className="relative flex flex-col md:flex-row items-center md:items-start px-4 py-10 w-full space-y-6 md:space-y-0 md:space-x-6">
@@ -55,10 +60,7 @@ const Explore: React.FC = () => {
       {/* Right Content */}
       <div className="relative flex-1 overflow-hidden w-full md:w-2/3">
         {/* Images Wrapper */}
-        <div
-          className="flex items-center space-x-4 image-container overflow-x-scroll no-scrollbar"
-          onScroll={handleScroll}
-        >
+        <div className="flex items-center space-x-4 image-container overflow-x-scroll no-scrollbar">
           {images.map((image, index) => (
             <div
               key={index}

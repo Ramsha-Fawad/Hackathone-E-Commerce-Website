@@ -1,55 +1,90 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 const Explore: React.FC = () => {
+  const [zoomedIndex, setZoomedIndex] = useState(0);
+
   const handleScrollRight = () => {
-    const container = document.querySelector(".image-container");
-    if (container) container.scrollBy({ left: 200, behavior: "smooth" });
+    const container = document.querySelector<HTMLDivElement>(".image-container");
+    if (container) {
+      const images = container.children;
+      const totalImages = images.length;
+
+      // Set the next image to zoom
+      setZoomedIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % totalImages;
+        container.scrollBy({ left: 200, behavior: "smooth" });
+        return nextIndex;
+      });
+    }
   };
 
+  const handleScroll = () => {
+    const container = document.querySelector<HTMLDivElement>(".image-container");
+    if (container) {
+      const scrollPosition = container.scrollLeft;
+      const imageWidth = container.children[0].clientWidth;
+      const index = Math.floor(scrollPosition / imageWidth);
+      setZoomedIndex(index);
+    }
+  };
+
+  const images = [
+    "/explore1.jpg",
+    "/explore2.jpg",
+    "/explore3.jpg",
+  ];
+
   return (
-    <div className="relative flex flex-col md:flex-row items-start pl-4 pr-7 py-10 w-full h-[670px] space-x-2">
+    <div className="relative flex flex-col md:flex-row items-center md:items-start px-4 py-10 w-full space-y-6 md:space-y-0 md:space-x-6">
       {/* Left Content */}
-      <div className="flex flex-col justify-center items-start w-1/4 h-auto space-y-4 px-4">
-        <h2 className="text-3xl font-bold text-gray-800">50+ Beautiful rooms inspiration</h2>
-        <p className="text-gray-600">
-          Our designer already made a lot of beautiful prototype of rooms that inspire you
+      <div className="flex flex-col justify-center items-start pt-10 md:pt-24 w-full md:w-1/3 space-y-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">
+          50+ Beautiful Rooms Inspiration
+        </h2>
+        <p className="text-gray-600 text-sm sm:text-base md:text-lg">
+          Our designer already made a lot of beautiful prototypes of rooms that inspire you.
         </p>
-        <button className="px-6 py-2 bg-[#B88E2F] text-white hover:bg-blue-700">Explore More</button>
+        <button className="px-6 py-2 bg-[#B88E2F] text-white hover:bg-blue-700 transition-colors">
+          Explore More
+        </button>
       </div>
 
       {/* Right Content */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="relative flex-1 overflow-hidden w-full md:w-2/3">
         {/* Images Wrapper */}
-        <div className="flex items-center space-x-2 image-container overflow-hidden">
-          {/* Image 1 - Large */}
-          <div
-            className="flex-shrink-0 w-[500px] h-[600px] bg-cover bg-center shadow-lg relative"
-            style={{ backgroundImage: "url('/explore1.jpg')" }}
-          >
-            {/* Arrow Button */}
-            <button
-              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-[#B88E2F] text-white w-10 h-10 flex items-center justify-center shadow-lg hover:bg-gray-700 z-10"
-              aria-label="Scroll Right"
-              onClick={handleScrollRight}
+        <div
+          className="flex items-center space-x-4 image-container overflow-x-scroll no-scrollbar"
+          onScroll={handleScroll}
+        >
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`flex-shrink-0 relative w-full sm:w-[300px] md:w-[400px] h-[300px] sm:h-[350px] md:h-[570px] shadow-lg transition-transform duration-300 ${
+                zoomedIndex === index ? "scale-110 z-10" : "scale-100"
+              }`}
             >
-              &#10145;
-            </button>
-          </div>
-
-          {/* Image 2 - Medium */}
-          <div
-            className="flex-shrink-0 w-[400px] h-[570px] bg-cover bg-center shadow-lg"
-            style={{ backgroundImage: "url('/explore2.jpg')" }}
-          ></div>
-
-          {/* Image 3 - Partially Visible */}
-          <div
-            className="flex-shrink-0 w-[300px] h-[570px] bg-cover bg-center shadow-lg"
-            style={{ backgroundImage: "url('/explore3.jpg')" }}
-          ></div>
+              <Image
+                src={image}
+                alt={`Beautiful Room ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+            </div>
+          ))}
         </div>
+
+        {/* Arrow Button */}
+        <button
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-[#B88E2F] text-white w-10 h-10 flex items-center justify-center shadow-lg hover:bg-gray-700 z-10"
+          aria-label="Scroll Right"
+          onClick={handleScrollRight}
+        >
+          &#10145;
+        </button>
       </div>
     </div>
   );

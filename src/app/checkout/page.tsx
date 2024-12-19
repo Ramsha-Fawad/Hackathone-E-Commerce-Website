@@ -27,22 +27,22 @@ const CheckoutPage = () => {
       {/* Main content */}
       <div className="container mx-auto py-10 px-4 lg:flex lg:gap-10">
         {/* Billing details */}
-        <div className="bg-white p-6 w-full h-[1714px] pl-16 space-y-10 lg:w-2/3">
-          <h2 className="text-[36px] text-black font-semibold mb-4">Billing details</h2>
+        <div className="bg-white p-6 w-full h-full lg:pl-16 space-y-10 lg:w-2/3">
+          <h2 className="text-2xl lg:text-[36px] text-black font-semibold mb-4">Billing details</h2>
           <form className="flex flex-col items-start space-y-10 gap-4">
-            <div className="flex flex-row gap-6 justify-between">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
               <label className="block text-black font-medium pb-4">First name</label>
             <input
               type="text"
-              className="input-field w-[211px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[211px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
               </div>
               <div>
               <label className="block text-black font-medium pb-4">Last name</label>
             <input
               type="text"
-              className="input-field w-[211px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[211px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
               </div>
             </div>
@@ -50,7 +50,7 @@ const CheckoutPage = () => {
             <label className="block text-black font-medium pb-4">Company Name (Optional)</label>
             <input
               type="text"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2 sm:col-span-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2 sm:col-span-2"
             />
             </div>
             <div>
@@ -58,14 +58,14 @@ const CheckoutPage = () => {
             <input
               type="text"
               placeholder="Sri Lanka"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
             <div>
             <label className="block text-black font-medium pb-4">Town / City</label>
             <input
               type="text"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
             </div>
             <div>
@@ -73,40 +73,40 @@ const CheckoutPage = () => {
             <input
               type="text"
               placeholder="Western Province"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
             </div>
             <div>
             <label className="block text-black font-medium pb-4">ZIP Code</label>
             <input
               type="text"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
             </div>
             <div>
             <label className="block text-black font-medium pb-4">Phone</label>
             <input
               type="number"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
             </div>
             <div>
             <label className="block text-black font-medium pb-4">Email Address</label>
             <input
               type="email"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
             />
             </div>
             <textarea
               placeholder="Additional Information"
-              className="input-field w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2 sm:col-span-2"
+              className="input-field w-full md:w-[453px] h-[75px] border border-gray-300 rounded-md px-4 py-2 sm:col-span-2"
               rows={4}
             ></textarea>
           </form>
         </div>
 
         {/* Order details */}
-        <div className="bg-white w-full pt-14 pr-20 space-y-6 lg:w-1/3 mt-10 lg:mt-0">
+        <div className="bg-white w-full pt-14 pr-4 lg:pr-20 space-y-6 lg:w-1/3 mt-10 lg:mt-0">
           <h2 className="text-xl font-semibold mb-4">Product</h2>
           <div className="flex justify-between mb-4">
             <p className="text-gray-400">Asgard sofa <b className="text-black">× 1</b></p>
@@ -146,15 +146,15 @@ const CheckoutPage = () => {
             for other purposes described in our <b>privacy policy</b>.
             </p>
           </div>
-          <button className="w-[318px] h-[64px] border border-black bg-white text-black text-[20px] py-3 rounded-2xl mt-4 hover:bg-gray-500">
+          <button className="w-full md:w-[318px] h-[64px] border border-black bg-white text-black text-[20px] py-3 rounded-2xl mt-4 hover:bg-gray-500">
             Place order
           </button>
         </div>
       </div>
 
        {/* Features Section */}
-      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
-        <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
+      <div className="bg-[#F9F1E7] py-10 items-center shadow-md">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
             <Image
               src="/trophy.jpg"
@@ -210,6 +210,3 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
-
-// Tailwind CSS helper classes for consistent styling
-const inputField = `border border-gray-300 rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-blue-500 focus:outline-none`;

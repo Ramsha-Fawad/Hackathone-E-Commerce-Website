@@ -13,12 +13,12 @@ export default function CartPage() {
     <div className="min-h-screen">
       {/* Header */}
       <div
-        className="bg-white py-6 shadow-md w-full h-[316px] items-center space-y-6"
+        className="bg-white py-6 shadow-md w-full h-[316px] items-center space-y-6 bg-cover bg-center"
         style={{
           backgroundImage: `url('/header-bg.jpg')`,
         }}
       >
-        <div className="container mx-auto flex flex-col items-center py-20">
+        <div className="container mx-auto flex flex-col items-center py-20 px-4">
           <Image
             src="/logo.jpg"
             alt="Meubel House Logo"
@@ -27,7 +27,7 @@ export default function CartPage() {
             className="mb-4"
           />
           <div className="text-center space-y-3">
-            <h1 className="text-4xl font-semibold">Cart</h1>
+            <h1 className="text-3xl md:text-4xl font-semibold">Cart</h1>
             <p className="text-sm text-black">Home &gt; Cart</p>
           </div>
         </div>
@@ -35,10 +35,10 @@ export default function CartPage() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="col-span-2 bg-white p-4">
-            <table className="w-full border-collapse">
+            <table className="w-full border-collapse text-sm md:text-base">
               <thead>
                 <tr className="text-center border-b bg-[#F9F1E7]">
                   <th className="py-4">Product</th>
@@ -49,8 +49,8 @@ export default function CartPage() {
               </thead>
               <tbody className="p-48">
                 <tr>
-                  <td className="py-4 flex items-center text-center">
-                    <div className="w-24 h-24 bg-[#F9F1E7] flex items-center justify-center rounded-md">
+                  <td className="py-4 flex flex-col md:flex-row items-center text-center md:text-left">
+                    <div className="w-24 h-24 bg-[#F9F1E7] flex items-center justify-center rounded-md mx-auto md:mx-0">
                       <Image
                         src="/sofa.jpg"
                         alt="Asgard Sofa"
@@ -59,7 +59,7 @@ export default function CartPage() {
                         className="rounded-md"
                       />
                     </div>
-                    <span className="mt-2 text-[#9F9F9F]">Asgard Sofa</span>
+                    <span className="mt-2 text-[#9F9F9F] md:ml-4">Asgard Sofa</span>
                   </td>
                   <td className="py-4 items-center text-center text-[#9F9F9F]">Rs. {price.toLocaleString()}</td>
                   <td className="py-4 items-center text-center">
@@ -87,8 +87,8 @@ export default function CartPage() {
           </div>
 
           {/* Cart Totals */}
-          <div className="bg-[#F9F1E7] p-6 w-[393px] h-[390px] justify-items-center shadow-md space-y-9">
-            <h2 className="text-xl font-bold mb-4">Cart Totals</h2>
+          <div className="bg-[#F9F1E7] p-6 justify-items-center shadow-md space-y-9">
+            <h2 className="text-lg md:text-xl font-bold mb-4">Cart Totals</h2>
             <div className="flex font-semibold justify-between items-center space-x-14 py-2">
               <span>Subtotal</span>
               <span className="text-[#9F9F9F]">Rs. {subtotal.toLocaleString()}</span>
@@ -107,8 +107,8 @@ export default function CartPage() {
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
-        <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
+      <div className="bg-[#F9F1E7] py-10 items-center shadow-md">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
             <Image
               src="/trophy.jpg"

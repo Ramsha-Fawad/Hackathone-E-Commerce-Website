@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
@@ -12,8 +13,8 @@ type Product = {
   discount?: string;
   isNew?: boolean;
 };
-// Array of Products
 
+// Array of Products
 const products: Product[] = [
   {
     id: 1,
@@ -90,11 +91,11 @@ const Product: React.FC = () => {
   return (
     <div className="p-0">
       <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
-      <div className="px-24 justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="px-6 sm:px-12 lg:px-24 justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <div
             key={product.id}
-            className="relative bg-white border p-4 group hover:bg-gray-300 transition-colors mx-auto w-[270px] h-[446px] overflow-hidden"
+            className="relative bg-white border p-4 group hover:bg-gray-300 transition-colors mx-auto w-full max-w-[270px] h-auto overflow-hidden"
           >
             {/* Discount or New Tag */}
             {(product.discount || product.isNew) && (
@@ -108,9 +109,11 @@ const Product: React.FC = () => {
             )}
 
             {/* Product Image */}
-            <img
+            <Image
               src={product.image}
               alt={product.name}
+              width={301}
+              height={301}
               className="w-full h-[301px] object-cover mb-4"
             />
 
@@ -122,13 +125,13 @@ const Product: React.FC = () => {
                 Rp{formatPrice(product.price.new)}
               </span>
               {!(product.isNew || product.discount) && product.price.old && (
-                <span className="line-through text-gray-500 mr-2">
+                <span className="line-through text-gray-500 ml-2">
                   Rp{formatPrice(product.price.old)}
                 </span>
               )}
             </div>
 
-            {/* Hover Options - Fixed Visibility */}
+            {/* Hover Options */}
             <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
               {/* Add to Cart Button */}
               <button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-green-500 transition-shadow">
@@ -153,7 +156,7 @@ const Product: React.FC = () => {
       </div>
       {/* Button to show more Products */}
       <div className="text-center mt-6">
-        <button className="bg-white text-[#B88E2F] border border-[#B88E2F] font-bold py-3 px-16 hover:bg-gray-400 transition-colors">
+        <button className="bg-white text-[#B88E2F] border border-[#B88E2F] font-bold py-3 px-16 hover:bg-lime-200 transition-colors">
           Show More
         </button>
       </div>

@@ -26,39 +26,49 @@ const ContactPage = () => {
       </div>
 
       {/* Contact Form and Information */}
-      <div className="container mx-auto items-center h-[1144px] px-60 pt-24 pb-16">
-        <h2 className="text-[36px] font-bold items-center text-center mb-4">Get In Touch With Us</h2>
+      <div className="container mx-auto items-center px-6 md:px-16 lg:px-24 pt-12 pb-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-4">
+          Get In Touch With Us
+        </h2>
         <p className="text-center text-gray-600 mb-8">
-          For more information about our product & services, please feel free to drop us <br /> an email. Our staff is always there to help you out. Do not hesitate!
+          For more information about our product & services, please feel free
+          to drop us <br className="hidden md:block" /> an email. Our staff is
+          always there to help you out. Do not hesitate!
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Contact Information */}
-          <div className="space-y-10 w-[393px] h-[537px] pt-10 pl-7">
-            <div className="flex items-start gap-5 pt-6">
-              <span className="text-yellow-500 text-2xl mr-4"><img src="/location-icon.jpg" alt="Location Sign" /></span>
-              <div className="p-4">
-                <h4 className="font-medium text-[24px]">Address</h4>
-                <p className="text-black text-[16px]">
-                  236 5th SE Avenue, New <br/> York NY10000, United <br/> States
+          <div className="space-y-10 w-full lg:max-w-md mx-auto">
+            <div className="flex items-start gap-5">
+              <span className="text-yellow-500 text-2xl">
+                <img src="/location-icon.jpg" alt="Location Sign" />
+              </span>
+              <div>
+                <h4 className="font-medium text-lg md:text-xl">Address</h4>
+                <p className="text-black text-sm md:text-base">
+                  236 5th SE Avenue, New <br /> York NY10000, United <br /> States
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-5 pt-6">
-              <span className="text-yellow-500 text-2xl mr-4"><img src="/phone-icon.jpg" alt="Phone Sign" /></span>
+            <div className="flex items-start gap-5">
+              <span className="text-yellow-500 text-2xl">
+                <img src="/phone-icon.jpg" alt="Phone Sign" />
+              </span>
               <div>
-                <h4 className="font-medium text-[24px]">Phone</h4>
-                <p className="text-black text-[16px]">
+                <h4 className="font-medium text-lg md:text-xl">Phone</h4>
+                <p className="text-black text-sm md:text-base">
                   Mobile: +(84) 546-6789 <br />
                   Hotline: +(84) 456-6789
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-5 pt-6">
-              <span className="text-yellow-500 text-[24px] mr-4"><img src="/clock-icon.jpg" alt="Clock-fill" /></span>
+            <div className="flex items-start gap-5">
+              <span className="text-yellow-500 text-2xl">
+                <img src="/clock-icon.jpg" alt="Clock-fill" />
+              </span>
               <div>
-                <h4 className="font-medium text-2xl">Working Time</h4>
-                <p className="text-black text-[16px]">
+                <h4 className="font-medium text-lg md:text-xl">Working Time</h4>
+                <p className="text-black text-sm md:text-base">
                   Monday-Friday: 9:00 - <br /> 22:00 <br />
                   Saturday-Sunday: 9:00 - <br /> 21:00
                 </p>
@@ -67,42 +77,46 @@ const ContactPage = () => {
           </div>
 
           {/* Contact Form */}
-          <form className="space-y-10 pt-10">
+          <form className="space-y-6">
             <div>
-              <label className="block text-black font-medium pb-4">Your name</label>
+              <label className="block text-black font-medium pb-2">
+                Your name
+              </label>
               <input
                 type="text"
                 placeholder="Abc"
-                className="w-[528.75px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
             <div>
-              <label className="block text-black font-medium pb-4">Email address</label>
+              <label className="block text-black font-medium pb-2">
+                Email address
+              </label>
               <input
                 type="email"
                 placeholder="Abc@def.com"
-                className="w-[528.75px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
             <div>
-              <label className="block text-black font-medium pb-4">Subject</label>
+              <label className="block text-black font-medium pb-2">Subject</label>
               <input
                 type="text"
                 placeholder="This is optional"
-                className="w-[526.75px] h-[75px] border border-gray-300 rounded-md px-4 py-2"
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               />
             </div>
             <div>
-              <label className="block text-black font-medium pb-4">Message</label>
+              <label className="block text-black font-medium pb-2">Message</label>
               <textarea
                 placeholder="Hi! I'd like to ask about"
                 rows={4}
-                className="w-[527px] h-[120px] border border-gray-300 rounded-md px-4 py-5 justify-center"
+                className="w-full border border-gray-300 rounded-md px-4 py-2"
               ></textarea>
             </div>
             <button
               type="submit"
-              className="bg-[#B88E2F] text-white font-bold py-2 px-6 rounded-md w-[237px] h-[55px]"
+              className="bg-[#B88E2F] text-white font-bold py-2 px-6 rounded-md w-full hover:bg-yellow-400 sm:w-auto"
             >
               Submit
             </button>
@@ -111,8 +125,8 @@ const ContactPage = () => {
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
-        <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
+      <div className="bg-[#F9F1E7] py-10 items-center shadow-md">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
             <Image
               src="/trophy.jpg"

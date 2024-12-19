@@ -115,18 +115,20 @@ const BlogClient: React.FC = () => {
                 key={post.id}
                 className="bg-white rounded-lg overflow-hidden"
               >
-                <img
+                <Image
                   src={post.image}
                   alt={post.title}
-                  className="w-[817px] h-[500px] object-cover"
+                  width={817}
+                  height={500}
+                  className="w-full h-[500px] object-cover"
                 />
                 <div className="p-6">
                   <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-                  <img src="/admin-users-icon.jpg" alt="Admin Users" /><span>{post.author}</span>
+                  <Image src="/admin-users-icon.jpg" alt="Admin Users" width={20} height={20} /><span>{post.author}</span>
                     <span>&middot;</span>
-                    <img src="/calendar-icon.jpg" alt="Calender" /><span>{post.date}</span>
+                  <Image src="/calendar-icon.jpg" alt="Calender" width={20} height={20} /><span>{post.date}</span>
                     <span>&middot;</span>
-                    <img src="/tag-icon.jpg" alt="Category Tag" /><span>{post.category}</span>
+                  <Image src="/tag-icon.jpg" alt="Category Tag" width={20} height={20} /><span>{post.category}</span>
                   </div>
                   <h2 className="text-2xl font-bold mb-4">{post.title}</h2>
                   <p className="text-gray-700 font-[15px] text-balance mb-6">{post.description}</p>
@@ -145,7 +147,7 @@ const BlogClient: React.FC = () => {
           <div className="space-y-14">
             {/* Categories */}
             <div className="bg-white rounded-lg p-8 space-y-9 w-[393px] h-[537px]">
-                <div className="flex justify-end items-center border rounded-md border-gray-400 w-[311px] h-[58px] p-4"> <img src="/search-icon.jpg" alt="" /></div>
+                <div className="flex justify-end items-center border rounded-md border-gray-400 w-[311px] h-[58px] p-4"> <Image src="/search-icon.jpg" alt="Search Icon" width={24} height={24} /></div>
               <h3 className="text-xl font-bold mb-4">Categories</h3>
               <ul className="space-y-7">
                 {categories.map((category, index) => (
@@ -166,9 +168,11 @@ const BlogClient: React.FC = () => {
               <ul className="space-y-7">
                 {recentPosts.map((recent) => (
                   <li key={recent.id} className="flex items-center space-x-4">
-                    <img
+                    <Image
                       src={recent.image}
                       alt={recent.title}
+                      width={64}
+                      height={64}
                       className="w-16 h-16 object-cover rounded"
                     />
                     <div>
@@ -194,8 +198,8 @@ const BlogClient: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
-        <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
+      <div className="bg-[#F9F1E7] py-10 items-center shadow-md">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
             <Image
               src="/trophy.jpg"

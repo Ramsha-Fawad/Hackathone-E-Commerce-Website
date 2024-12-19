@@ -72,13 +72,12 @@ const products: Product[] = [
       </div>
 
       {/* Filter Section */}
-      <div className="container bg-[#F9F1E7] w-full p-6 flex justify-between items-center">
-        <div className="bg-[#F9F1E7] flex items-center pl-14 space-x-8">
-           <img src="/filter-icon.jpg" alt="Filter button" />
+      <div className="container bg-[#F9F1E7] w-full p-6 flex flex-wrap justify-between items-center">
+        <div className="bg-[#F9F1E7] flex items-center pl-14 space-x-8 mb-4 md:mb-0">
+           <Image src="/filter-icon.jpg" alt="Filter button" width={19.05} height={16.67} />
           <button className="bg-[#F9F1E7]-200 pr-2 text-black font-medium">Filter</button>
-          <img src="/grid-icon.jpg" alt="View in Grids" />
-          <img src="/bi-view-icon.jpg" alt="Bi-view List" />
-          <img src="/line5.jpg" alt="Line" />
+          <Image src="/grid-icon.jpg" alt="View in Grids" width={19.05} height={16.67} />
+          <Image src="/bi-view-icon.jpg" alt="Bi-view List" width={19.05} height={16.67} />
           <span className="text-black font-medium">Showing 1–16 of 32 results</span>
         </div>
         <div className="flex items-center space-x-4">
@@ -98,7 +97,7 @@ const products: Product[] = [
       </div>
 
      {/* Product Grid */}
-<div className="container mx-auto p-6 grid grid-cols-4 gap-6">
+<div className="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
   {Array.from({ length: 4 }).map((_, rowIndex) =>
     products.map((product) => (
       <div
@@ -117,9 +116,11 @@ const products: Product[] = [
         )}
 
         {/* Product Image */}
-        <img
+        <Image
           src={product.image}
           alt={product.name}
+          width={270} // Adjust based on your image dimensions
+          height={301} // Adjust based on your image dimensions
           className="w-full h-[301px] object-cover mb-4"
         />
 
@@ -170,8 +171,8 @@ const products: Product[] = [
       </div>
 
       {/* Features Section */}
-      <div className="bg-[#F9F1E7] h-[270px] py-10 items-center shadow-md">
-        <div className="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center pt-14">
+      <div className="bg-[#F9F1E7] py-10 items-center shadow-md">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 items-center text-center pt-14">
           <div className="flex flex-row items-center text-left space-x-4">
             <Image
               src="/trophy.jpg"

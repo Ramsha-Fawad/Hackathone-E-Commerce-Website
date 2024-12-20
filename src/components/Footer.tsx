@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
@@ -17,10 +18,10 @@ const Footer = () => {
         <div>
           <h2 className="text-lg font-semibold">Links</h2>
           <ul className="mt-4 text-black font-semibold space-y-2">
-            <li><a href="/" className="hover:text-gray-900">Home</a></li>
-            <li><a href="/shop" className="hover:text-gray-900">Shop</a></li>
-            <li><a href="/about" className="hover:text-gray-900">About</a></li>
-            <li><a href="/contact" className="hover:text-gray-900">Contact</a></li>
+            <li><Link href="/" className="hover:text-gray-900">Home</Link></li>
+            <li><Link href="/shop" className="hover:text-gray-900">Shop</Link></li>
+            <li><Link href="/about" className="hover:text-gray-900">About</Link></li>
+            <li><Link href="/contact" className="hover:text-gray-900">Contact</Link></li>
           </ul>
         </div>
 
@@ -28,9 +29,9 @@ const Footer = () => {
         <div>
           <h2 className="text-lg font-semibold">Help</h2>
           <ul className="mt-4 text-black font-semibold space-y-2">
-            <li><a href="/payment-options" className="hover:text-gray-900">Payment Options</a></li>
-            <li><a href="/returns" className="hover:text-gray-900">Returns</a></li>
-            <li><a href="/privacy-policies" className="hover:text-gray-900">Privacy Policies</a></li>
+            <li><Link href="/payment-options" className="hover:text-gray-900">Payment Options</Link></li>
+            <li><Link href="/returns" className="hover:text-gray-900">Returns</Link></li>
+            <li><Link href="/privacy-policies" className="hover:text-gray-900">Privacy Policies</Link></li>
           </ul>
         </div>
 

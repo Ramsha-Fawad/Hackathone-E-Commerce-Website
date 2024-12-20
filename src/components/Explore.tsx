@@ -7,7 +7,8 @@ const Explore: React.FC = () => {
   const [zoomedIndex, setZoomedIndex] = useState(0);
 
   useEffect(() => {
-    const container = document.querySelector<HTMLDivElement>(".image-container");
+    const container =
+      document.querySelector<HTMLDivElement>(".image-container");
     if (container) {
       const handleScroll = () => {
         const scrollPosition = container.scrollLeft;
@@ -23,10 +24,12 @@ const Explore: React.FC = () => {
         container.removeEventListener("scroll", handleScroll);
       };
     }
-  }, []); // Empty dependency array ensures this runs only on mount/unmount
+  }, []);
+  // Empty dependency array ensures this runs only on mount/unmount
 
   const handleScrollRight = () => {
-    const container = document.querySelector<HTMLDivElement>(".image-container");
+    const container =
+      document.querySelector<HTMLDivElement>(".image-container");
     if (container) {
       const images = container.children;
       const totalImages = images.length;
@@ -50,7 +53,8 @@ const Explore: React.FC = () => {
           50+ Beautiful Rooms Inspiration
         </h2>
         <p className="text-gray-600 text-sm sm:text-base md:text-lg">
-          Our designer already made a lot of beautiful prototypes of rooms that inspire you.
+          Our designer already made a lot of beautiful prototypes of rooms that
+          inspire you.
         </p>
         <button className="px-6 py-2 bg-[#B88E2F] text-white hover:bg-blue-700 transition-colors">
           Explore More

@@ -13,7 +13,7 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <Image src="/logo.jpg" alt="Meubel House Logo" width={10} height={10} />
+          <Image src="/logo.jpg" alt="Meubel House Logo" width={45} height={45} />
           <span className="text-3xl font-bold text-black">Furniro</span>
         </div>
 

@@ -15,8 +15,7 @@ const Hero: React.FC = () => {
           Discover Our <br /> New Collection
         </h1>
         <p className="text-lg mt-4 max-w-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-          tellus, luctus nec ullamcorper mattis.
+        Elevate your space with our latest furniture collection—crafted for comfort, style, and timeless elegance.
         </p>
         <button className="mt-6 px-6 py-3 h-[74px] w-[222px] bg-[#B88E2F] text-white font-semibold hover:bg-yellow-600">
           Buy Now

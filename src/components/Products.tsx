@@ -1,162 +1,160 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { GoArrowSwitch } from "react-icons/go";
 import { FaHeart } from "react-icons/fa";
+import { client } from "@/sanity/lib/client";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 
-type Product = {
-  id: number;
-  name: string;
+interface Product {
+  _id: string;
+  title: string;
+  price: number;
   description: string;
-  price: { new: number; old?: number };
-  image: string;
-  discount?: string;
+  dicountPercentage?: number;
   isNew?: boolean;
-};
+  imageUrl: string;
+  tags?: string[];
+}
 
-// Array of Products
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Syltherine",
-    description: "Stylish cafe chair",
-    price: { new: 2500000, old: 3500000 },
-    image: "/image 1.jpg",
-    discount: "30%",
-  },
-  {
-    id: 2,
-    name: "Leviosa",
-    description: "Stylish cafe chair",
-    price: { new: 2500000 },
-    image: "/image 2.jpg",
-  },
-  {
-    id: 3,
-    name: "Lolito",
-    description: "Luxury big sofa",
-    price: { new: 7500000, old: 14000000 },
-    image: "/image 3.jpg",
-    discount: "50%",
-  },
-  {
-    id: 4,
-    name: "Respira",
-    description: "Outdoor bar table and stool",
-    price: { new: 5000000 },
-    image: "/image 4.jpg",
-    isNew: true,
-  },
-  {
-    id: 5,
-    name: "Grifo",
-    description: "Night lamp",
-    price: { new: 1500000 },
-    image: "/image 5.jpg",
-  },
-  {
-    id: 6,
-    name: "Muggo",
-    description: "Small mug",
-    price: { new: 150000 },
-    image: "/image 6.jpg",
-    isNew: true,
-  },
-  {
-    id: 7,
-    name: "Pingky",
-    description: "Cute bed set",
-    price: { new: 7000000, old: 14000000 },
-    image: "/image 7.jpg",
-    discount: "50%",
-  },
-  {
-    id: 8,
-    name: "Potty",
-    description: "Minimalist flower pot",
-    price: { new: 500000 },
-    image: "/image 8.jpg",
-    isNew: true,
-  },
-];
+const Products = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { addToCart } = useCart();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist(); // Access Wishlist functions
 
-const Product: React.FC = () => {
-  const formatPrice = (price: number) => {
-    // Convert number to string and format it as X.XX.XXX
-    const priceStr = price.toString();
-    const formatted = priceStr.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-    return formatted;
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await client.fetch(`
+          *[_type == "product"] {
+            _id,
+            title,
+            price,
+            description,
+            dicountPercentage,
+            isNew,
+            "imageUrl": productImage.asset->url,
+            tags
+          }
+        `);
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <p>Loading products...</p>;
+
+  const displayedProducts = products.slice(0, 8);
 
   return (
     <div className="p-0">
       <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
       <div className="px-6 sm:px-12 lg:px-24 justify-center items-center grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="relative bg-white border p-4 group hover:bg-gray-300 transition-colors mx-auto w-full max-w-[270px] h-auto overflow-hidden"
-          >
-            {/* Discount or New Tag */}
-            {(product.discount || product.isNew) && (
-              <div
-                className={`absolute top-2 right-2 px-2 py-1 text-white text-sm font-bold rounded-full ${
-                  product.discount ? "bg-red-500" : "bg-green-500"
-                }`}
-              >
-                {product.discount || "NEW"}
-              </div>
-            )}
+        {displayedProducts.map((product) => {
+          const isWishlisted = wishlist.some((item) => item._id === product._id);
 
-            {/* Product Image */}
-            <Image
-              src={product.image}
-              alt={product.name}
-              width={301}
-              height={301}
-              className="w-full h-[301px] object-cover mb-4"
-            />
+          return (
+            <div
+              key={product._id}
+              className="relative bg-white border p-4 group hover:bg-gray-300 transition-colors mx-auto w-full max-w-[270px] h-auto overflow-hidden"
+            >
+              {/* Discount or New Tag */}
+              {(product.dicountPercentage && product.dicountPercentage > 0) || product.isNew ? (
+                <div
+                  className={`absolute top-2 right-2 px-2 py-1 text-white text-sm font-bold rounded-full ${
+                    product.dicountPercentage && product.dicountPercentage > 0 ? "bg-red-500" : "bg-green-500"
+                  }`}
+                >
+                  {product.dicountPercentage ? `-${product.dicountPercentage}%` : "NEW"}
+                </div>
+              ) : null}
 
-            {/* Product Info */}
-            <h2 className="text-xl text-[#3A3A3A] font-semibold mb-2">{product.name}</h2>
-            <p className="text-gray-700 text-sm mb-2">{product.description}</p>
-            <div className="text-sm font-medium mb-4">
-              <span className="text-[#3A3A3A] font-semibold">
-                Rp{formatPrice(product.price.new)}
-              </span>
-              {!(product.isNew || product.discount) && product.price.old && (
-                <span className="line-through text-gray-500 ml-2">
-                  Rp{formatPrice(product.price.old)}
+              {/* Product Image */}
+              <Image
+                src={product.imageUrl}
+                alt={product.title}
+                width={301}
+                height={301}
+                className="w-full h-[301px] object-cover mb-4"
+              />
+
+              {/* Product Info */}
+              <h2 className="text-xl text-[#3A3A3A] font-semibold mb-2">{product.title}</h2>
+              <p className="text-gray-700 text-sm mb-2">{product.title}</p>
+              <div className="text-sm font-medium mb-4">
+                <span className="text-[#3A3A3A] font-semibold">
+                  $.{product.price.toLocaleString()}
                 </span>
-              )}
-            </div>
+              </div>
 
-            {/* Hover Options */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
-              {/* Add to Cart Button */}
-              <button className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-green-500 transition-shadow">
-                Add to Cart
-              </button>
-              {/* Icons Row */}
-              <div className="flex justify-center space-x-2 text-white text-sm mt-2">
-                <button className="hover:text-black flex items-center">
-                  <IoShareSocialSharp /> Share
+              <div className="flex mt-2 gap-2">
+                {product.tags?.map((tag, index) => (
+                  <span key={index} className="text-xs bg-blue-100 text-blue-600 py-1 rounded-md">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Hover Options */}
+              <div className="absolute inset-0 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-transform duration-200 ease-in-out">
+                {/* Product Details Button */}
+                <button
+                  onClick={() => router.push(`/product/${product._id}`)}
+                  className="m-4 bg-white text-yellow-600 font-bold px-4 py-2 rounded-lg hover:bg-blue-300"
+                >
+                  Details
                 </button>
-                <button className="hover:text-black flex items-center">
-                  <GoArrowSwitch /> Compare
+
+                {/* Add to Cart Button */}
+                <button
+                  className="bg-white text-yellow-600 font-bold py-2 px-4 rounded shadow mb-2 hover:shadow-lg hover:bg-green-500 transition-shadow"
+                  onClick={() => addToCart({ ...product, quantity: 1 })}
+                >
+                  Add to Cart
                 </button>
-                <button className="hover:text-black flex items-center">
-                  <FaHeart />
-                  Like
-                </button>
+
+                {/* Icons Row */}
+                <div className="flex justify-center space-x-2 text-white text-sm mt-2">
+                  <button className="hover:text-black flex items-center">
+                    <IoShareSocialSharp /> Share
+                  </button>
+                  <button className="hover:text-black flex items-center">
+                    <GoArrowSwitch /> Compare
+                  </button>
+                  
+                  {/* Wishlist Button */}
+                  <button
+                    className={`hover:text-black flex items-center ${isWishlisted ? "text-red-500" : ""}`}
+                    onClick={() =>
+                      isWishlisted ? removeFromWishlist(product._id) : addToWishlist(product)
+                    }
+                  >
+                    <FaHeart className={isWishlisted ? "fill-red-500" : "fill-white"} />
+                    {isWishlisted ? " Liked" : " Like"}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       {/* Button to show more Products */}
       <div className="text-center mt-6">
-        <button className="bg-white text-[#B88E2F] border border-[#B88E2F] font-bold py-3 px-16 hover:bg-lime-200 transition-colors">
+        <button
+          onClick={() => router.push("/shop")}
+          className="bg-white text-[#B88E2F] border border-[#B88E2F] font-bold py-3 px-16 hover:bg-lime-200 transition-colors"
+        >
           Show More
         </button>
       </div>
@@ -164,4 +162,4 @@ const Product: React.FC = () => {
   );
 };
 
-export default Product;
+export default Products;

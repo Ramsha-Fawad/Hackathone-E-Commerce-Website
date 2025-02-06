@@ -27,10 +27,12 @@ const CheckoutPage = () => {
     // Check if all required fields are filled
     for (const key in formData) {
       if (formData[key as keyof typeof formData] === "") {
-        alert("Please fill in all required fields");
+        setError("Please fill in all required fields");
         return;
       }
     }
+
+    setError("");
 
     console.log("Form submitted successfully!", formData);
 

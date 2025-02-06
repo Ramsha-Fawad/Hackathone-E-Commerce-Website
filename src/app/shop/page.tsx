@@ -126,6 +126,12 @@ const Shop = () => {
           <span className="text-black font-medium">
             Showing 1–24 of 72 results
           </span>
+          {/* Display the selected filter */}
+    {filterOption && (
+      <span className="ml-4 text-sm bg-gray-200 px-3 py-1 rounded-md">
+        Filter: {filterOption === "discounted" ? "Discounted Items" : filterOption === "new" ? "New Arrivals" : "All Products"}
+      </span>
+    )}
         </div>
         <div className="flex items-center space-x-4">
           <span>Show</span>

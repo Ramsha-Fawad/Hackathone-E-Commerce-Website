@@ -41,7 +41,7 @@ const ContactPage = () => {
           <div className="space-y-10 w-full lg:max-w-md mx-auto">
             <div className="flex items-start gap-5">
               <span className="text-yellow-500 text-2xl">
-                <img src="/location-icon.jpg" alt="Location Sign" />
+                <Image src="/location-icon.jpg" alt="Location Sign" width={30} height={30} />
               </span>
               <div>
                 <h4 className="font-medium text-lg md:text-xl">Address</h4>
@@ -52,7 +52,7 @@ const ContactPage = () => {
             </div>
             <div className="flex items-start gap-5">
               <span className="text-yellow-500 text-2xl">
-                <img src="/phone-icon.jpg" alt="Phone Sign" />
+                <Image src="/phone-icon.jpg" alt="Phone Sign" width={30} height={30} />
               </span>
               <div>
                 <h4 className="font-medium text-lg md:text-xl">Phone</h4>
@@ -64,7 +64,7 @@ const ContactPage = () => {
             </div>
             <div className="flex items-start gap-5">
               <span className="text-yellow-500 text-2xl">
-                <img src="/clock-icon.jpg" alt="Clock-fill" />
+                <Image src="/clock-icon.jpg" alt="Clock-fill" width={30} height={30} />
               </span>
               <div>
                 <h4 className="font-medium text-lg md:text-xl">Working Time</h4>

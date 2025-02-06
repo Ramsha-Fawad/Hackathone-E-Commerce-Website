@@ -21,7 +21,6 @@ export default function CartPage() {
   };
 
   const subtotal = calculateSubtotal();
-  const total = subtotal; // Add taxes or shipping if needed here
 
   return (
     <div className="min-h-screen">
